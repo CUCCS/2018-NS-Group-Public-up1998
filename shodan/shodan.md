@@ -7,16 +7,16 @@
 ## 2.基本信息
 * shodan的搜索流程
 
-![](/pictures/shodan的搜索流程.PNG)
+![](pictures/shodan的搜索流程.PNG)
 
 * banner是shodan采集的基本数据单位。它描述的是设备所运行服务时的标志性文本信息。banner的内容可以跟着服务类型的变化而变化。例如，对Web服务器来说，banner就将返回标题或telnet登录界面。
 以下是几个banner例子：
 
-![](/pictures/http的banner.PNG)
+![](pictures/http的banner.PNG)
 
 > 上面的banner显示该设备正在运行一个2.7版本的gSOAP服务器软件。
 
-![](/pictures/西门子的banner.PNG)
+![](pictures/西门子的banner.PNG)
 
 > 上面的banner显示这是一个西门子S7工控系统协议。其中包含了大量的详细信息，例如公司名称、模块类型、基本固件、模块名称、序号、基本硬件等。
 
@@ -26,7 +26,7 @@
 * 设备元数据
 shodan除了获取banner以外，还可以获取相关设备的元数据。比如地址、主机名、操作系统、最近的一次更新时间等。其中大部分元数据可以通过shodan的官网获取，小部分可以通过使用API编程获取。
 
-![](/pictures/元数据.PNG)
+![](pictures/元数据.PNG)
 
 ## 3.数据采集
 * 爬虫工作频率
@@ -59,7 +59,7 @@ heartbleed漏洞，CVE号是CVE-2014-0160。它的产生是由于未能在memcpy
 
 同时，shodan也支持漏洞信息搜索。使用的过滤器：*vuln* 。它允许通过CVE进行搜索，返回易受特定CVE攻击的设备。但是它是只有具备小型企业开发者会员资格(每月299美元)或学术会员资源的人才能使用的。故这里使用的图片其实来源于网络。
 
-![](/pictures/过滤器.PNG)
+![](pictures/过滤器.PNG)
 
 > 上图显示的是：搜索美国受心脏滴血漏洞影响的设备。在shodan中输入country:US vuln:CVE-2014-0160
 
@@ -106,7 +106,7 @@ shodan的爬虫一开始按照上面所说的方法进行正常请求，与服�
 
 同时，版本信息也可以通过shodan网站进行搜索。
 
-![](/pictures/sslv3.PNG)
+![](pictures/sslv3.PNG)
 
 >上图就是输入ssl.version:sslv3搜索到的允许使用SSLv3的所有SSL服务。（SSLv3, TLSv1, TLSv1.1, TLSv1.2等）
 
@@ -142,8 +142,9 @@ git clone https://github.com/achillean/shodan-python.git && cd shodan-python
 python setup.py install
 ```
 
-![](/pictures/kali安装1.PNG)
-![](/pictures/kali安装2.PNG)
+![](pictures/kali安装1.PNG)
+
+![](pictures/kali安装2.PNG)
 
 安装好shodan之后首先应该init API_Key
 ```
@@ -151,14 +152,14 @@ shodan init <api key>
 ```
 其中API_Key在创建shodan账号的时候shodan已经分配了。可以在网页版看到属于自己的API_Key。
 
-![](/pictures/shodan初始化.PNG)
+![](pictures/shodan初始化.PNG)
 
 查看完整列表命令：
 ```
 shodan stats --facets http.component_category:1000 http
 ```
 
-![](/pictures/完整列表.PNG)
+![](pictures/完整列表.PNG)
 
 
 * 级联
@@ -173,9 +174,9 @@ shodan stats --facets http.component_category:1000 http
 * 这是shodan的网址：[shodan](https://www.shodan.io/)。
 * 这是shodan的首页：
 
-![](/pictures/shodan.PNG)
+![](pictures/shodan.PNG)
 
-![](/pictures/首页.PNG)
+![](pictures/首页.PNG)
 
 其中，左侧是大量的数据汇总，包括：
 TOTAL RESULTS:总共的结果
@@ -204,14 +205,14 @@ filtername:value
 city:"Beijing"
 ```
 
-![](/pictures/北京.PNG)
+![](pictures/北京.PNG)
 
 * 想要筛选出多个值可以使用“，”分开，但是注意，过滤语法不允许使用“，”。
 例如，
 ```
 port：23,1023 是正确的
 ```
-![](/pictures/port231023.PNG)
+![](pictures/port231023.PNG)
 
 > 上图过滤出的结果是23号端口和1023号端口上运行telnet的设备。
 
@@ -220,7 +221,7 @@ port，hostname，net 是错误的
 port:80,8080  city:"beijing" hostname:"baidu.com" 是正确的
 ```
 
-![](/pictures/baidu.PNG)
+![](pictures/baidu.PNG)
 
 > 上图过滤出的结果是北京的80端口、8080端口，域名是“baidu.com”的设备。
 
@@ -229,7 +230,7 @@ port:80,8080  city:"beijing" hostname:"baidu.com" 是正确的
 port:80,8080  -city:"beijing" hostname:"baidu.com"
 ```
 
-![](/pictures/-baidu.PNG)
+![](pictures/-baidu.PNG)
 
 > 上图过滤出的结果是不在北京的80端口、8080端口，域名是“baidu.com”的设备。
 
@@ -239,7 +240,7 @@ port:80,8080  -city:"beijing" hostname:"baidu.com"
 port:80 -hash:0 
 ```
 
-![](/pictures/hash.PNG)
+![](pictures/hash.PNG)
 
 > 上图过滤出的结果是80号端口主文本标题为空的设备。
 
@@ -268,11 +269,11 @@ version|软件版本|version:"2.6.1"
 * 下载数据
 如图，在搜索完成之后，会出现一个“Download Results”
 
-![](/pictures/download.PNG)
+![](pictures/download.PNG)
 
 点击该按钮，会弹出对话框，可以选择以JSON、CSV、XML（已弃用）格式下载搜索结果。
 
-![](/pictures/下载.PNG)
+![](pictures/下载.PNG)
 
 JSON格式的文件，每行都包括全部的banner 和所有的元数据。是保存数据信息的首选格式。其中格式与shodan命令行客户端兼容，可以从shodan网站下载数据，然后使用终端进一步处理。
 CSV格式的文件，返回包含IP、端口、banner
@@ -281,30 +282,30 @@ CSV格式的文件，返回包含IP、端口、banner
 * 生成报告
 shodan可以根据搜索查询结果生成报告。其中可以包含图表。
 
-![](/pictures/report.PNG)
+![](pictures/report.PNG)
 
-![](/pictures/报告.PNG)
+![](pictures/报告.PNG)
 
 * 分享结果
 可以分享搜索查询结果给其他shodan用户。
 
-![](/pictures/share.PNG)
+![](pictures/share.PNG)
 
-![](/pictures/分享.PNG)
+![](pictures/分享.PNG)
 
 ## 5. shodan地图
 shodan地图网址：[Shodan Maps](https://maps.shodan.io)
 
-![](/pictures/Maps.PNG)
+![](pictures/Maps.PNG)
 
 使用shodan地图进行搜索，可以直观显示地理位置。
 
-![](/pictures/地图.PNG)
+![](pictures/地图.PNG)
 
 ## 6. shodan Exploits
 shodan Exploits网址：[Shodan Exploits](https://exploits.shodan.io)
 
-![](/pictures/exploits.PNG)
+![](pictures/exploits.PNG)
 
 Shodan Exploits可以收集来自CVE、Exploit DB和Metasploit的漏洞和攻击。这样用户就可通过Web界面进行搜索。
 但是需要注意，Shodan Exploit搜索的结果不同于Shodan，Exploit搜索的内容包括exploit的信息和元数据。
@@ -316,7 +317,7 @@ description|描述|description:"remote"
 platform|平台|platform:"php"
 type|漏洞类型|type:"remote"
 
-![](/pictures/iis.PNG)
+![](pictures/iis.PNG)
 
 
 ## 7. shodan 图片
@@ -324,31 +325,31 @@ shodan图片地址：[Shodan Images](https://images.shodan.io)
 
 由于shodan images 同样是付费使用，故图片也来自网络。
 
-![](/pictures/图片.PNG)
+![](pictures/图片.PNG)
 
 ## 8. 图标搜索
 通过已知的icon hash搜索目标
 * 获取百度的地址。
 在本机上ping通百度，然后获得百度的地址：123.125.115.110。
 
-![](/pictures/ping百度.PNG)
+![](pictures/ping百度.PNG)
 
 * 查看原数据
 使用shodan搜索123.125.115.110，并找到原始数据。
 
-![](/pictures/icon1.PNG)
+![](pictures/icon1.PNG)
 
-![](/pictures/icon2.PNG)
+![](pictures/icon2.PNG)
 
-![](/pictures/icon3.PNG)
+![](pictures/icon3.PNG)
 
 * 在原数据里面找到"data.1.http.favicon.hash"，其值为："-1507567067“
 
-![](/pictures/icon4.PNG)
+![](pictures/icon4.PNG)
 
 * 在shodan中搜索："http.favicon.hash:-1507567067"。可以找到shodan所收录的百度的网站。
 
-![](/pictures/icon5.PNG)
+![](pictures/icon5.PNG)
 
 
 
@@ -358,7 +359,7 @@ shodan图片地址：[Shodan Images](https://images.shodan.io)
 
 
 
-![](/pictures/.PNG)
+![](pictures/.PNG)
 
 
 
