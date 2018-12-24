@@ -351,9 +351,151 @@ shodan图片地址：[Shodan Images](https://images.shodan.io)
 
 ![](pictures/icon5.PNG)
 
+# 三、shodan的外部工具
+## 1. 使用kali的命令行shodan
+* 安装shodan。
+第一种方法：
+```
+git clone https://github.com/achillean/shodan-python.git && cd shodan-python
+python setup.py install
+```
 
+![](pictures/kali安装1.PNG)
 
+![](pictures/kali安装2.PNG)
 
+第二种方法：
+```
+easy_install shodan
+```
+
+* 初始化shodan
+安装好shodan之后首先应该使用API对其进行初始化操作
+```
+shodan init <api key>
+```
+其中API_Key在创建shodan账号的时候shodan已经分配了。可以在网页版看到属于自己的API_Key。
+
+![](pictures/shodan初始化.PNG)
+
+* alert命令
+alert命令提供创建、列表、清除和删除网络提醒的能力。
+```
+shodan alert
+```
+
+![](pictures/alert.PNG)
+
+* convert命令
+convert命令是用来导出shodan的搜索结果文件，比如JSON文件。
+
+![](pictures/convert.PNG)
+
+* count命令
+count命令用来查询结果
+```
+shodan count +...
+```
+
+![](pictures/count.PNG)
+
+* download命令
+download命令用来搜索shodan并将结果导出到JSON文件中。
+默认只下载1000个结果。如果想要获得更多的结果，需要加上```--limit```标志。
+download命令可以保存搜索结果到本地。使用```parse```命令处理结果，当再次导出相同内容的时候，就可以不花积分导出了。
+```
+shodan download +...
+```
+
+![](pictures/download命令行.PNG)
+
+* host命令
+host命令用来查看有关主机的信息，例如国家、城市、组织、开放的端口等等。
+```
+shodan host +...
+```
+
+![](pictures/host.PNG)
+
+* honeyscore命令
+honeyscore命令用来检查IP地址是否为蜜罐。
+```
+shodan honeyscore +...
+```
+
+![](pictures/honeyscore.PNG)
+
+* info命令
+info命令用来查询自己的API账户信息。其中包括本月剩余的查询次数和扫描积分数量。
+```
+shodan info
+```
+
+![](pictures/info.PNG)
+
+* myip命令
+myip命令用来返回本机的出口IP。
+```
+shodan myip
+```
+
+![](pictures/myip.PNG)
+
+* parse命令
+parse命令用来分析并使用导出的搜索结果。一般与download命令一起使用。它可以过滤出感兴趣的字段，也可以将JSON转换为CSV。
+
+![](pictures/parse.PNG)
+
+* scan命令
+```scan```命令提供了一些子命令。其中```submit```命令可以使用shodan进行网络扫描。
+默认情况下，它将显示IP、端口、主机名和数据。可以使用```--fields```来打印任何需要的banner字段。
+
+![](pictures/scanerror.PNG)
+
+但是很遗憾的，scan命令也需要专业账号才能使用。故图片来源自网络。
+```
+shodan scan submit 198.20.99.0/24
+```
+
+![](pictures/scan.PNG)
+
+* search命令
+search命令搜索的时候，终端将以命令行形式显示结果。默认打印IP、端口、主机名和数据。同样，可以使用```--fields```来打印任何需要的banner字段。
+
+```
+shodan search --fields ip_str，port，org，hostnames microsoft iis 6.0
+```
+
+![](pictures/search.PNG)
+
+* stats命令
+stats命令提供关于搜索的摘要信息，也可以用于统计信息。
+例如，使用命令行来显示Apache Web服务器所在的最常用的国家。
+```
+shodan stats --facets country apache
+```
+
+![](pictures/stats.PNG)
+
+* stream命令
+stream命令提供shodan爬虫的实时数据流。
+
+![](pictures/stream.PNG)
+
+stream命令的```--limit```选项：可以指定应下载多少结果。默认情况下，该stream命令将一直运行，直到退出该工具。
+
+stream命令的```--datadir```选项：可以指定流数据存储的目录，生成的文件格式YYYY-MM-DD.json.gz。
+
+stream命令的```--ports```选项：可以接受逗号分隔端口，收集指定端口记录的清单
+
+## 2. shodan浏览器插件
+插件名称：Shodan
+插件作者：www.shodanhq.com
+插件语言：English (United States)
+官方站点：暂无官方站点
+插件唯一标识：jjalcfnidlmpjhdfepjhjbhnhkbgleap
+
+![](pictures/插件.PNG)
 
 
 
